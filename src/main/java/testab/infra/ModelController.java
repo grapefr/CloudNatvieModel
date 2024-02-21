@@ -7,11 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javafx.application.Application;
 import testab.domain.*;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 //<<< Clean Arch / Inbound Adaptor
 
@@ -20,7 +16,6 @@ import org.slf4j.LoggerFactory;
 @Transactional
 public class ModelController {
 
-    private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     @Autowired
     ModelRepository modelRepository;
@@ -31,7 +26,6 @@ public class ModelController {
     public Model reqeust(HttpServletRequest request, HttpServletResponse response, @RequestBody Model model
         ) throws Exception {
             System.out.println("##### /target/approve  called ##### target : " + model.getUserId() );
-            logger.info("##### /target/approve  called ##### target : {} " , model);
             model.setState("requested");
             // modelRepository.save(model);
             return modelRepository.save(model);
