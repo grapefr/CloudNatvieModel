@@ -74,6 +74,17 @@ phases:
               containers:
                 - name: $_PROJECT_NAME
                   image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$_PROJECT_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
+                  env:
+                  - name: HYBERNATE_TYPE
+                    valueFrom:
+                      configMapKeyRef:
+                        name: config-dev
+                        key: HYBERNATE_TYPE
+                  - name: LOG_LEVEL
+                    valueFrom:
+                      configMapKeyRef:
+                        name: config-dev
+                        key: LOG_LEVEL
                   ports:
                     - containerPort: 8080
                   resources:
