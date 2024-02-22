@@ -5,7 +5,6 @@ spring:
   application:
     name: model
 ---
-
 spring:
   profiles: default
   jpa:
@@ -30,14 +29,14 @@ spring:
       bindings:
         event-in:
           group: model
-#<<< EDA / Topic Name
+          #<<< EDA / Topic Name
           destination: testab
-#>>> EDA / Topic Name
+          #>>> EDA / Topic Name
           contentType: application/json
         event-out:
-#<<< EDA / Topic Name
+          #<<< EDA / Topic Name
           destination: testab
-#>>> EDA / Topic Name
+          #>>> EDA / Topic Name
           contentType: application/json
 
 logging:
@@ -45,12 +44,10 @@ logging:
     org.hibernate.type: trace
     org.springframework.cloud: debug
 
-
 server:
   port: 8082
 
 ---
-
 spring:
   profiles: docker
   jpa:
@@ -80,5 +77,9 @@ spring:
         event-out:
           destination: testab
           contentType: application/json
-
-
+logging:
+  file:
+    name: /data/app.log
+  level:
+    org.hibernate.type: ${HYBERNATE_TYPE:trace}
+    org.springframework.cloud: ${LOG_LEVEL:error}
